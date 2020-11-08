@@ -1,0 +1,16 @@
+create [language] [project name] ...flags
+
+Languages:
+	py: Python
+	c/c++: C/C++
+	node: Node.js
+	go: GoLang
+	arduino: Arduino
+	flutter: Flutter
+	help: Display current help message
+
+Flags:
+	-g: Create a remote git repository
+	-l: Make the repository local, not remote
+	-v: Make the remote repository publicly visible
+	-r: Create a README.md file

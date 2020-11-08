@@ -1,0 +1,13 @@
+open [language] [project dir]
+
+Languages:
+	py: Python
+	c/c++: C/C++
+	node: Node.js
+	go: GoLang
+	arduino: Arduino
+	flutter: Flutter
+	help: Display current help message
+
+if project dir == ""
+	Displays all possible dirs
