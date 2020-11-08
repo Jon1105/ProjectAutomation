@@ -23,17 +23,10 @@ func main() {
 		var lang, err1 = common.Classify(os.Args[1])
 		common.Check(err1)
 
+		var projects []os.FileInfo = getProjects(lang.Path)
 		// Print all Projects
-		var count int
-		var files, err2 = ioutil.ReadDir(lang.Path)
-		common.Check(err2)
-		var projects []os.FileInfo
-		for _, file := range files {
-			if file.IsDir() {
-				projects = append(projects, file)
-				count++
-				fmt.Printf("%v: %v\n", count, file.Name())
-			}
+		for index, file := range projects {
+			fmt.Printf("%d: %s\n", index+1, file.Name())
 		}
 
 		var scanner *bufio.Scanner = bufio.NewScanner(os.Stdin)
@@ -46,6 +39,8 @@ func main() {
 				return
 			} else if input == "q" {
 				return
+			} else if input == "" {
+
 			} else {
 				path := filepath.Join(lang.Path, input)
 				var exists, err3 = common.Exists(path)
@@ -60,8 +55,19 @@ func main() {
 		}
 	} else if nArgs == 3 {
 		var lang, err1 = common.Classify(os.Args[1])
+		var input string = os.Args[2]
 		common.Check(err1)
-		var path string = filepath.Join(lang.Path, os.Args[2])
+		if num, err := strconv.Atoi(input); err == nil {
+			var projects []os.FileInfo = getProjects(lang.Path)
+			if num <= len(projects) {
+				common.OpenWithCode(filepath.Join(lang.Path, projects[num-1].Name()))
+				return
+			}
+			fmt.Println(fmt.Errorf("Project index out of range: projects[%d]; Max: %d", num, len(projects)))
+			return
+
+		}
+		var path string = filepath.Join(lang.Path, input)
 		var exists, err2 = common.Exists(path)
 		common.Check(err2)
 		if exists {
@@ -73,7 +79,19 @@ func main() {
 		}
 	} else {
 		fmt.Println(fmt.Errorf("Excpected 3 or less arguments, got %d", nArgs))
-		return 
+		return
 	}
 
+}
+
+func getProjects(path string) []os.FileInfo {
+	var files, err = ioutil.ReadDir(path)
+	common.Check(err)
+	var projects []os.FileInfo
+	for _, file := range files {
+		if file.IsDir() {
+			projects = append(projects, file)
+		}
+	}
+	return projects
 }
