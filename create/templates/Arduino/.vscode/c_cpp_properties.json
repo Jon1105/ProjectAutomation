@@ -3,14 +3,23 @@
         {
             "name": "Win32",
             "includePath": [
-                "C:\\Users\\jonat\\AppData\\Local\\Arduino15\\packages\\esp8266\\tools\\**",
-                "C:\\Users\\jonat\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.7.4\\**",
                 "C:\\Program Files (x86)\\Arduino\\tools\\**",
-                "C:\\Program Files (x86)\\Arduino\\hardware\\tools\\avr\\avr\\include\\avr\\**",
+                "C:\\Users\\jonat\\AppData\\Local\\Arduino15\\packages\\**",
+                "C:\\Program Files (x86)\\Arduino\\hardware\\tools\\avr\\avr\\include\\**",
                 "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\**",
-                "C:\\Users\\jonat\\OneDrive\\Documents\\Electronics\\Arduino\\Sketches\\libraries\\**"
+                "C:\\Users\\jonat\\OneDrive\\Documents\\Electronics\\Arduino\\Sketches\\libraries\\**",
+                "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\**"
             ],
-            "intelliSenseMode": "msvc-x64",
+            "browse": {
+                "path": [
+                    "C:\\Users\\jonat\\AppData\\Local\\Arduino15\\packages\\**",
+                    "C:\\Program Files (x86)\\Arduino\\hardware\\tools\\avr\\avr\\include\\**",
+                    "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\**",
+                    "C:\\Users\\jonat\\OneDrive\\Documents\\Electronics\\Arduino\\Sketches\\libraries\\**",
+                    "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\**"
+                ]
+            },
+            "intelliSenseMode": "clang-x64",
             "forcedInclude": [
                 "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h"
             ],
