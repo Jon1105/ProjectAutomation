@@ -31,6 +31,7 @@ var allLanguages = map[string]Language{
 	"C++":     Language{"C++", w("Programming/C++/Projects")},
 	"Flutter": Language{"Flutter", w("Programming/Flutter/Projects")},
 	"Arduino": Language{"Arduino", w("Electronics/Arduino/Sketches")},
+	"Rust": Language{"Rust", w("Programming/Rust/Projects")},
 }
 
 func w(path string) string {
@@ -53,6 +54,8 @@ func Classify(strLang string) (Language, error) {
 		key = "Go"
 	} else if strings.Contains(strings.ToLower(strLang), "ino") {
 		key = "Arduino"
+	} else if strings.Contains(strings.ToLower(strLang), "rust") {
+		key = "Rust"
 	} else {
 		err = fmt.Errorf("common: string %q does not represent a valid language", strLang)
 	}
