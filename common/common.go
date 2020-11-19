@@ -24,42 +24,44 @@ type Language struct {
 	Name, Path string
 }
 
-var allLanguages = map[string]Language{
-	"Python":  Language{"Python", w("Programming/Python/Projects")},
-	"Go":      Language{"Go", GoPath},
-	"Node.js": Language{"Node.js", w("Programming/Node.js/Projects")},
-	"C++":     Language{"C++", w("Programming/C++/Projects")},
-	"Flutter": Language{"Flutter", w("Programming/Flutter/Projects")},
-	"Arduino": Language{"Arduino", w("Electronics/Arduino/Sketches")},
-	"Rust": Language{"Rust", w("Programming/Rust/Projects")},
-}
-
 func w(path string) string {
 	return filepath.Join(Documents, path)
 }
 
 // Classify used to determine the language from human inputted strings
 func Classify(strLang string) (Language, error) {
-	var key string
+	var lang Language
 	var err error
-	if strings.Contains(strings.ToLower(strLang), "py") {
-		key = "Python"
-	} else if strings.Contains(strings.ToLower(strLang), "c") {
-		key = "C++"
-	} else if strings.Contains(strings.ToLower(strLang), "node") {
-		key = "Node.js"
-	} else if strings.Contains(strings.ToLower(strLang), "flutter") {
-		key = "Flutter"
-	} else if strings.Contains(strings.ToLower(strLang), "go") {
-		key = "Go"
-	} else if strings.Contains(strings.ToLower(strLang), "ino") {
-		key = "Arduino"
-	} else if strings.Contains(strings.ToLower(strLang), "rust") {
-		key = "Rust"
+	var low string = strings.ToLower(strLang)
+	if low == "py" {
+		lang = Language{"Python", w("Programming/Python/Projects")}
+
+	} else if low == "cpp" || low == "c++" {
+		lang = Language{"C++", w("Programming/C++/Projects")}
+		
+	} else if low == "node" || low == "js" {
+		lang = Language{"Node.js", w("Programming/Node.js/Projects")}
+
+	} else if low == "flutter" {
+		lang = Language{"Flutter", w("Programming/Flutter/Projects")}
+
+	} else if low == "go" {
+		lang = Language{"Go", GoPath}
+
+	} else if low == "ino" || low == "arduino" {
+		lang = Language{"Arduino", w("Electronics/Arduino/Sketches")}
+
+	} else if low == "rust" {
+		lang = Language{"Rust", w("Programming/Rust/Projects")}
+
+	} else if low == "workspace" {
+		lang = Language{"Workspace", filepath.Join(home, ".vscode", "Workspaces")}
+		
 	} else {
 		err = fmt.Errorf("common: string %q does not represent a valid language", strLang)
+
 	}
-	return allLanguages[key], err
+	return lang, err
 }
 
 // Exists function to check whether path exists on the machine
