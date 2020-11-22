@@ -23,7 +23,9 @@ func main() {
 		var lang, err1 = common.Classify(os.Args[1])
 		common.Check(err1)
 
-		var projects []os.FileInfo = getProjects(lang.Path)
+		var projects []os.FileInfo = getProjects(lang.Path, lang.Name != "Workspace")
+
+
 		// Print all Projects
 		for index, file := range projects {
 			fmt.Printf("%d: %s\n", index+1, file.Name())
@@ -58,7 +60,7 @@ func main() {
 		var input string = os.Args[2]
 		common.Check(err1)
 		if num, err := strconv.Atoi(input); err == nil {
-			var projects []os.FileInfo = getProjects(lang.Path)
+			var projects []os.FileInfo = getProjects(lang.Path, lang.Name != "Workspace")
 			if num <= len(projects) {
 				common.OpenWithCode(filepath.Join(lang.Path, projects[num-1].Name()))
 				return
@@ -84,12 +86,12 @@ func main() {
 
 }
 
-func getProjects(path string) []os.FileInfo {
+func getProjects(path string, dirsOnly bool) []os.FileInfo {
 	var files, err = ioutil.ReadDir(path)
 	common.Check(err)
 	var projects []os.FileInfo
 	for _, file := range files {
-		if file.IsDir() {
+		if file.IsDir() || dirsOnly {
 			projects = append(projects, file)
 		}
 	}
