@@ -2,11 +2,12 @@ open [language] [project dir]
 
 Languages:
 	py: Python
-	c/c++: C/C++
+	c++ / cpp: C++
 	node: Node.js
 	go: GoLang
 	arduino: Arduino
 	flutter: Flutter
+	workspace: VScode workspace
 	help: Display current help message
 
 if project dir == ""
