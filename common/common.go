@@ -24,7 +24,7 @@ type Language struct {
 	Name, Path string
 }
 
-func w(path string) string {
+func docs(path string) string {
 	return filepath.Join(Documents, path)
 }
 
@@ -34,29 +34,29 @@ func Classify(strLang string) (Language, error) {
 	var err error
 	var low string = strings.ToLower(strLang)
 	if low == "py" {
-		lang = Language{"Python", w("Programming/Python/Projects")}
+		lang = Language{"Python", docs("Programming/Python/Projects")}
 
 	} else if low == "cpp" || low == "c++" {
-		lang = Language{"C++", w("Programming/C++/Projects")}
-		
-	} else if low == "node" || low == "js" {
-		lang = Language{"Node.js", w("Programming/Node.js/Projects")}
+		lang = Language{"C++", docs("Programming/C++/Projects")}
+
+	} else if low == "node" || low == "js" || low == "ts" {
+		lang = Language{"Node.js", docs("Programming/Node.js/Projects")}
 
 	} else if low == "flutter" {
-		lang = Language{"Flutter", w("Programming/Flutter/Projects")}
+		lang = Language{"Flutter", docs("Programming/Flutter/Projects")}
 
 	} else if low == "go" {
 		lang = Language{"Go", GoPath}
 
 	} else if low == "ino" || low == "arduino" {
-		lang = Language{"Arduino", w("Electronics/Arduino/Sketches")}
+		lang = Language{"Arduino", docs("Electronics/Arduino/Sketches")}
 
 	} else if low == "rust" {
-		lang = Language{"Rust", w("Programming/Rust/Projects")}
+		lang = Language{"Rust", docs("Programming/Rust/Projects")}
 
 	} else if low == "workspace" {
 		lang = Language{"Workspace", filepath.Join(home, ".vscode", "Workspaces")}
-		
+
 	} else {
 		err = fmt.Errorf("common: string %q does not represent a valid language", strLang)
 
