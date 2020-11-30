@@ -80,6 +80,7 @@ func Github(projectPath string, private bool) error {
 	}
 	if (statusCode >= 200 && statusCode <= 299) && url != "" {
 		var cmd *exec.Cmd = exec.Command("git", "remote", "add", "origin", url)
+		cmd.Dir = projectPath
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
 		return cmd.Run()
