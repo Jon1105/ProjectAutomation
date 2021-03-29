@@ -1,7 +1,7 @@
 package git
 
 import (
-	"ProjectAutomation/common"
+	"github.com/Jon1105/ProjectAutomation/common"
 	"bytes"
 	"encoding/json"
 	"fmt"

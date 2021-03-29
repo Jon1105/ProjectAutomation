@@ -1,7 +1,7 @@
 package main
 
 import (
-	"ProjectAutomation/common"
+	"github.com/Jon1105/ProjectAutomation/common"
 	"bufio"
 	"fmt"
 	"io/ioutil"
@@ -25,7 +25,6 @@ func main() {
 
 		var projects []os.FileInfo = getProjects(lang.Path, lang.Name != "Workspace")
 
-
 		// Print all Projects
 		for index, file := range projects {
 			fmt.Printf("%d: %s\n", index+1, file.Name())
@@ -42,9 +41,9 @@ func main() {
 			} else if input == "q" {
 				return
 			} else if input == "" {
-
+				continue
 			} else {
-				path := filepath.Join(lang.Path, input)
+				var path string = filepath.Join(lang.Path, input)
 				var exists, err3 = common.Exists(path)
 				common.Check(err3)
 				if exists {
@@ -91,7 +90,7 @@ func getProjects(path string, dirsOnly bool) []os.FileInfo {
 	common.Check(err)
 	var projects []os.FileInfo
 	for _, file := range files {
-		if file.IsDir() || dirsOnly {
+		if file.IsDir() || !dirsOnly {
 			projects = append(projects, file)
 		}
 	}

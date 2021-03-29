@@ -14,7 +14,7 @@ var home, err = os.UserHomeDir()
 var Documents string = filepath.Join(home, "OneDrive", "Documents")
 
 // GoPath Path to Go projects to find current directory
-var GoPath string = filepath.Join(Documents, "Programming", "Go", "src")
+var GoPath string = filepath.Join(Documents, "Programming", "Go", "src", "github.com", "Jon1105")
 
 // CurrentPath Path representing location of this files parent's parent's
 var CurrentPath string = filepath.Join(GoPath, "ProjectAutomation")
@@ -33,17 +33,17 @@ func Classify(strLang string) (Language, error) {
 	var lang Language
 	var err error
 	var low string = strings.ToLower(strLang)
-	if low == "py" {
+	if low == "py" || low == "python" {
 		lang = Language{"Python", docs("Programming/Python/Projects")}
 
 	} else if low == "cpp" || low == "c++" {
-		lang = Language{"C++", docs("Programming/C++/Projects")}
+		lang = Language{"C++", docs("Programming/C++/")}
 
 	} else if low == "node" || low == "js" || low == "ts" {
-		lang = Language{"Node.js", docs("Programming/Node.js/Projects")}
+		lang = Language{"Node.js", docs("Programming/Node.js/")}
 
-	} else if low == "flutter" {
-		lang = Language{"Flutter", docs("Programming/Flutter/Projects")}
+	} else if low == "flutter" || low == "dart" {
+		lang = Language{"Flutter", docs("Programming/Flutter/")}
 
 	} else if low == "go" {
 		lang = Language{"Go", GoPath}
@@ -52,7 +52,7 @@ func Classify(strLang string) (Language, error) {
 		lang = Language{"Arduino", docs("Electronics/Arduino/Sketches")}
 
 	} else if low == "rust" {
-		lang = Language{"Rust", docs("Programming/Rust/Projects")}
+		lang = Language{"Rust", docs("Programming/Rust/")}
 
 	} else if low == "workspace" {
 		lang = Language{"Workspace", filepath.Join(home, ".vscode", "Workspaces")}
