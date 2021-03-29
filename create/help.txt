@@ -4,7 +4,7 @@ Languages:
 	py: Python
 	c++ / cpp: C++
 	node: Node.js
-	go: GoLang
+	go: Golang
 	arduino: Arduino
 	flutter: Flutter
 	workspace: VScode workspace
